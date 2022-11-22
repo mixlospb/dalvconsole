@@ -6,42 +6,42 @@ var consolecommands = {
 	_private : {
 		
 		main: function (){
-			cl('------------------------------');
+			_console.cl('------------------------------');
 		},
 		
 		help: function (){
-			cl('------------------------------');
+			_console.cl('------------------------------');
 		}
 		
 	},
 	
 	help : {
 		main: function (){
-			cl('HELP - список доступных комманд');
-			cl('&nbsp;');
+			_console.cl('HELP - список доступных комманд');
+			_console.cl('&nbsp;');
 			$(_console.funcs).each(function(){
-				cl('> <syntax>' + this + '</syntax>');
+				_console.cl('> <syntax>' + this + '</syntax>');
 			});
-			cl('&nbsp;');
-			cl('Для более подробной информации наберите имя_команды /?');
-			cl('------------------------------');
+			_console.cl('&nbsp;');
+			_console.cl('Для более подробной информации наберите имя_команды /?');
+			_console.cl('------------------------------');
 		},
 		help: function (){
-			cl('HELP - вывод справки о консоли');
-			cl('------------------------------');
+			_console.cl('HELP - вывод справки о консоли');
+			_console.cl('------------------------------');
 		}
 	},
 
 	hist : {
 		main: function (){
 			$(_console.hist).each(function(i, e){
-				cl(e);
+				_console.cl(e);
 			});
-			cl('------------------------------');
+			_console.cl('------------------------------');
 		},
 		help: function (){
-			cl('HIST HELP - вывод истории действий');
-			cl('------------------------------');
+			_console.cl('HIST HELP - вывод истории действий');
+			_console.cl('------------------------------');
 		}
 	},
 
@@ -51,9 +51,9 @@ var consolecommands = {
 			_console.motd();
 		},
 		help: function (){
-			cl('CLEAR HELP');
-			cl('Очистка консоли');
-			cl('------------------------------');
+			_console.cl('CLEAR HELP');
+			_console.cl('Очистка консоли');
+			_console.cl('------------------------------');
 		}
 	},
 	

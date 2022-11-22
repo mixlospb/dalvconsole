@@ -44,12 +44,12 @@ _console.addCommands({
 			// silent - если установлено в true то то команда будет выполнена без записи в историю
 			// data - передача прочих данных
 			
-			cl('Команда mycommand выполнена');
+			_console.cl('Команда mycommand выполнена');
 		},
 		
 		help: function (){
-			cl('MYCOMMAND HELP');
-			cl('Текст описания вашей команды');
+			_console.cl('MYCOMMAND HELP');
+			_console.cl('Текст описания вашей команды');
 		}
 	}
 });
@@ -61,34 +61,34 @@ var myComands = {
 	
 	mycommand1 : {
 		main: function (){
-			cl('Команда mycommand1 выполнена');
+			_console.cl('Команда mycommand1 выполнена');
 		},
 		
 		help: function (){
-			cl('MYCOMMAND1 HELP');
-			cl('Текст описания команды mycommand1');
+			_console.cl('MYCOMMAND1 HELP');
+			_console.cl('Текст описания команды mycommand1');
 		}
 	},
 	
 	mycommand2 : {
 		main: function (){
-			cl('Команда mycommand2 выполнена');
+			_console.cl('Команда mycommand2 выполнена');
 		},
 		
 		help: function (){
-			cl('MYCOMMAND2 HELP');
-			cl('Текст описания команды mycommand2');
+			_console.cl('MYCOMMAND2 HELP');
+			_console.cl('Текст описания команды mycommand2');
 		}
 	},
 	
 	mycommand3 : {
 		main: function (){
-			cl('Команда mycommand3 выполнена');
+			_console.cl('Команда mycommand3 выполнена');
 		},
 		
 		help: function (){
-			cl('MYCOMMAND3 HELP');
-			cl('Текст описания команды mycommand3');
+			_console.cl('MYCOMMAND3 HELP');
+			_console.cl('Текст описания команды mycommand3');
 		}
 	},
 	
