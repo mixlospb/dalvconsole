@@ -33,9 +33,10 @@ hist
 ### 4) добавление своих комманд
 ```js
 _console.addCommands(objectWithCommands);
+```
 
 Добавляем 1 команду
-
+```js
 _console.addCommands({
 	mycommand : {
 		main: function (args, silent, data){
