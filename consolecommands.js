@@ -45,16 +45,6 @@ var consolecommands = {
 		}
 	},
 
-	clearhist : {
-		main: function (){
-			_console.hist = _console.iterifyArr(['']);
-		},
-		help: function (){
-			cl('CLEARHIST HELP - Очистка истории действий');
-			cl('------------------------------');
-		}
-	},
-
 	clear : {
 		main: function (){
 			_console._log.empty();

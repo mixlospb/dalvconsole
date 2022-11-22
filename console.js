@@ -1,7 +1,8 @@
 "use strict";
 var _console = {
 	_started : false,
-	oldonkey : null,
+	
+	openKeyCode : 192, // ` (keycode for toggle console)
 	
 	_bg : $("<div class='dalv_console_bg'></div>"),
 	_div : $("<div class='dalv_console_div'></div>"),
@@ -185,7 +186,7 @@ var _console = {
 		});
 		
 		$(document.body).keydown(function(e) {
-			if (e.keyCode == 192){
+			if (e.keyCode == _console.openKeyCode){
 				e.preventDefault();
 				e.stopImmediatePropagation();
 				_console.toggle();
@@ -267,13 +268,22 @@ var _console = {
 			_console.hist = _console.iterifyArr(['']);
 	},
 	
+	addCommands : function(objectWithCommands){
+		if (!consolecommands)
+			consolecommands = {};
+		
+		$.extend(consolecommands, objectWithCommands);
+		this.reloadCommands();
+	},
+	
 	reloadCommands : function(){
 		this.funcs = [];
-		if (consolecommands)
-			for (var f in consolecommands){
-				if (f[0] != '_' && f != 'god')
-					this.funcs.push(f);
-			}
+		if (!consolecommands)
+			consolecommands = {};
+		for (var f in consolecommands){
+			if (f[0] != '_')
+				this.funcs.push(f);
+		}
 		this.funcs.sort();
 	},
 	
@@ -400,7 +410,7 @@ var _console = {
 		localStorage.setItem("console_hist", _console.hist);
 	},
 	
-	run : function(command, silent, e){
+	run : function(command, silent, data){
 		//cl(command, true)
 		if (!this._started)
 			return;
@@ -434,7 +444,7 @@ var _console = {
 		else if (args.join(' ') == '/?'){
 			consolecommands[cmd].help();
 		} else {
-			consolecommands[cmd].main(args, silent, e);
+			consolecommands[cmd].main(args, silent, data);
 		}
 	}
 
