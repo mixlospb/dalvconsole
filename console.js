@@ -266,6 +266,7 @@ var _console = {
 			_console.hist = _console.iterifyArr(localStorage.console_hist.split(','));
 		else
 			_console.hist = _console.iterifyArr(['']);
+		_console.hist.end();
 	},
 	
 	addCommands : function(objectWithCommands){
@@ -402,6 +403,7 @@ var _console = {
 		if (command == _console.hist[_console.hist.length-1])
 			return;
 		_console.hist.push(command);
+		_console.hist.end();
 		if (_console.hist.length > _console.maxHistLength){
 			var delta = _console.hist.length - _console.maxHistLength;
 			_console.hist.splice(0, delta);
