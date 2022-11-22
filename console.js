@@ -311,6 +311,7 @@ var _console = {
 				_console._inp.removeAttr('disabled');
 				_console._inp.focus();
 				_console._inp.val('');
+				_console.hist.end();
 			});
 		}
 	},
