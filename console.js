@@ -262,8 +262,8 @@ var _console = {
 	},
 	
 	initHist : function(){
-		if (localStorage.console_hist && $.isArray(localStorage.console_hist))
-			_console.hist = _console.iterifyArr(localStorage.console_hist);
+		if (localStorage.console_hist)
+			_console.hist = _console.iterifyArr(localStorage.console_hist.split(','));
 		else
 			_console.hist = _console.iterifyArr(['']);
 	},
