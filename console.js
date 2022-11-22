@@ -106,10 +106,10 @@ var _console = {
 	},
 
 	motd : function(){
-		cl('<c_lightgreen>Dalv Console</c_lightgreen>');
-		cl('<c_lightgreen>Для справки введите HELP</c_lightgreen>');
-		cl('<c_lightgreen>Автозавершение комманд кнопкой TAB</c_lightgreen>');
-		cl('&nbsp;');
+		this.cl('<c_lightgreen>Dalv Console</c_lightgreen>');
+		this.cl('<c_lightgreen>Для справки введите HELP</c_lightgreen>');
+		this.cl('<c_lightgreen>Автозавершение комманд кнопкой TAB</c_lightgreen>');
+		this.cl('&nbsp;');
 	},
 	
 	findCommands : function(txt){
@@ -132,22 +132,22 @@ var _console = {
 		return $('<div>' + str.replace(/<script>.*<\/script>/gi, "") + '</div>').text();
 	},
 	
+	cl : function(text){
+		if (_console && _console._log != null){
+			if (typeof text == "string")
+				_console._log.prepend("<div style='padding-left:9px;'>" + text + "</div>")
+			else
+				_console._log.prepend("<div style='padding-left:9px;'>" + JSON.stringify(text) + "</div>");
+			_console._logcontainer.scrollTop(1000000000);
+		} else
+			try {console.log(text)} catch(e){console.log(e)}
+	},
+	
 	init : function(){
 		if (this._started == true)
 			return;
 		if ($('body').length == 0)
 			return;
-		
-		top.cl = function(text){
-			if (_console && _console._log != null){
-				if (typeof text == "string")
-					_console._log.prepend("<div style='padding-left:9px;'>" + text + "</div>")
-				else
-					_console._log.prepend("<div style='padding-left:9px;'>" + JSON.stringify(text) + "</div>");
-				_console._logcontainer.scrollTop(1000000000);
-			} else
-				try {console.log(text)} catch(e){console.log(e)}
-		};
 		
 		_console.initHist();
 		
@@ -235,15 +235,15 @@ var _console = {
 					finded = _console.findCommands(_console.switchToENG(val));
 				
 				if (finded.length > 0){
-					cl('<c_lightgreen>Найдены соответствия:</c_lightgreen>');
+					_console.cl('<c_lightgreen>Найдены соответствия:</c_lightgreen>');
 					$(finded).each(function(){
-						cl(this);
+						_console.cl(this);
 					});
 					if (finded.length == 1)
 						_console._inp.val(finded[0] + ' ')
 					else
 						_console._inp.val(_console.getRoot(finded));
-					cl('&nbsp;');
+					_console.cl('&nbsp;');
 					_console._log.stop().scrollTop(1000000);
 				}
 			}
@@ -388,7 +388,7 @@ var _console = {
 			
 			i++;
 			if (i > 50){
-				cl("parseArgs break: " + line ,true);
+				console.log("parseArgs break: " + line ,true);
 				break;
 			}
 		}
@@ -411,7 +411,7 @@ var _console = {
 	},
 	
 	run : function(command, silent, data){
-		//cl(command, true)
+		//_console.cl(command, true)
 		if (!this._started)
 			return;
 		while (command.indexOf('/') == 0)
@@ -426,11 +426,11 @@ var _console = {
 		var args = _console.parseArgs(command);
 		var cmd = args[0];
 		args.shift();
-		//cl(args, true);
+		//_console.cl(args, true);
 		if (!silent && _console.funcs.indexOf(cmd) != -1 && !consolecommands[cmd].onlysilent)
 			_console.pushToHist(command);
 		if (!silent)
-			cl('<c_darkgreen>/' + command + '</c_darkgreen>');
+			_console.cl('<c_darkgreen>/' + command + '</c_darkgreen>');
 		
 		if (!silent){
 			_console._inp.val('').focus();
@@ -439,7 +439,7 @@ var _console = {
 		// =========================
 		_console.hist.end();
 		if (_console.funcs.indexOf(cmd) == -1 && cmd !== 'god') {
-			cl('Неизвестная команда "' + cmd + '"');
+			_console.cl('Неизвестная команда "' + cmd + '"');
 			}
 		else if (args.join(' ') == '/?'){
 			consolecommands[cmd].help();
